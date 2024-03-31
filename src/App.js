@@ -4,7 +4,6 @@ import TopButtons from "./components/TopButtons";
 import Inputs from "./components/Inputs";
 import TimeAndLocation from "./components/TimeAndLocation";
 import TemperatureAndDetails from "./components/TemperatureAndDetails";
-import Forecast from "./components/Forecast";
 import getWeatherData from "./services/WeatherService";
 import getFormattedWeatherData from "./services/WeatherService";
 import { useEffect, useState } from "react";
@@ -20,6 +19,7 @@ function App() {
   // Effect hook to fetch weather data on component mount and when query or units change
   useEffect(() => {
     const fetchWeather = async () => {
+      
       const message = query.location ? query.location : "current location.";
 
       // Displaying toast notification for fetching weather
@@ -28,7 +28,7 @@ function App() {
       // Fetching weather data and updating state
       await getFormattedWeatherData({ ...query, units }).then((data) => {
         toast.success(
-          `Successfully fetched weather for ${data.name}, ${data.country}.`
+          `Successfully fetched weather for ${data.name}.`
         );
 
         setWeather(data);
